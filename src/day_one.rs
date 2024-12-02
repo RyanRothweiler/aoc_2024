@@ -1,9 +1,15 @@
-pub fn run(input: &str) {
-    let ans = solve(input);
-    println!("{ans}");
+use crate::Solution;
+
+pub fn build_solution() -> Solution {
+    Solution {
+        day: 1,
+        input: include_str!("../resources/day_one/day_one_input.txt").into(),
+        part_one: part_one_solve,
+        part_two: part_two_solve,
+    }
 }
 
-fn solve(input: &str) -> i32 {
+fn part_one_solve(input: &str) -> f64 {
     let mut left: Vec<i32> = vec![];
     let mut right: Vec<i32> = vec![];
 
@@ -22,7 +28,11 @@ fn solve(input: &str) -> i32 {
         dist += (left[i] - right[i]).abs();
     }
 
-    dist
+    dist as f64
+}
+
+fn part_two_solve(input: &str) -> f64 {
+    0.0
 }
 
 mod test {
