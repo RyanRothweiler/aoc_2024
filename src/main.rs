@@ -13,6 +13,16 @@ pub struct Solution {
     pub part_two: fn(&str) -> f64,
 }
 
+impl Solution {
+    pub fn run_part_one(&self) -> f64 {
+        (self.part_one)(&self.input)
+    }
+
+    pub fn run_part_two(&self) -> f64 {
+        (self.part_two)(&self.input)
+    }
+}
+
 mod day_one;
 
 fn main() {
