@@ -32,6 +32,8 @@ fn part_one_solve(input: &str) -> f64 {
 }
 
 fn part_two_solve(input: &str) -> f64 {
+    let start = std::time::Instant::now();
+
     0.0
 }
 
