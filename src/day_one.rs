@@ -1,6 +1,8 @@
 use crate::Solution;
 use std::collections::HashMap;
 
+const SAMPLE: &str = include_str!("../resources/day_one/day_one_sample.txt");
+
 pub fn build_solution() -> Solution {
     Solution {
         day: 1,
@@ -60,13 +62,13 @@ mod test {
 
     #[test]
     fn part_one_sample() {
-        let ans = super::part_one_solve(include_str!("../resources/day_one/test.txt"));
+        let ans = super::part_one_solve(super::SAMPLE);
         assert_eq!(ans, 11.0);
     }
 
     #[test]
     fn part_two_sample() {
-        let ans = super::part_two_solve(include_str!("../resources/day_one/test.txt"));
+        let ans = super::part_two_solve(super::SAMPLE);
         assert_eq!(ans, 31.0);
     }
 

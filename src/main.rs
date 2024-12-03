@@ -1,5 +1,5 @@
 #![allow(clippy::all)]
-#![allow(unused_variables, unused_imports)]
+#![allow(unused_variables, unused_imports, dead_code)]
 
 use std::{
     include_str,
@@ -24,11 +24,13 @@ impl Solution {
 }
 
 mod day_one;
+mod day_two;
 
 fn main() {
     // build solutions
     let mut solutions: Vec<Solution> = vec![];
     solutions.push(day_one::build_solution());
+    solutions.push(day_two::build_solution());
 
     // run solutions
     for s in solutions {
