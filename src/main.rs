@@ -24,6 +24,7 @@ impl Solution {
 }
 
 mod day_one;
+mod day_three;
 mod day_two;
 
 fn main() {
@@ -31,6 +32,7 @@ fn main() {
     let mut solutions: Vec<Solution> = vec![];
     solutions.push(day_one::build_solution());
     solutions.push(day_two::build_solution());
+    solutions.push(day_three::build_solution());
 
     // run solutions
     for s in solutions {

@@ -7,7 +7,7 @@ const EDGE_CASES: &str = include_str!("../resources/day_two/day_two_edge_cases.t
 
 pub fn build_solution() -> Solution {
     Solution {
-        day: 1,
+        day: 2,
         input: include_str!("../resources/day_two/day_two_input.txt").into(),
         part_one: part_one_solve,
         part_two: part_two_solve,
