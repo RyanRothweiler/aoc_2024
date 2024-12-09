@@ -23,6 +23,7 @@ impl Solution {
     }
 }
 
+mod day_four;
 mod day_one;
 mod day_three;
 mod day_two;
@@ -33,6 +34,7 @@ fn main() {
     solutions.push(day_one::build_solution());
     solutions.push(day_two::build_solution());
     solutions.push(day_three::build_solution());
+    solutions.push(day_four::build_solution());
 
     // run solutions
     for s in solutions {
