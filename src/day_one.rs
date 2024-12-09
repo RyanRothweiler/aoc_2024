@@ -1,12 +1,12 @@
 use crate::Solution;
 use std::collections::HashMap;
 
-const SAMPLE: &str = include_str!("../resources/day_one/day_one_sample.txt");
+const SAMPLE: &str = include_str!("../resources/1/day_one_sample.txt");
 
 pub fn build_solution() -> Solution {
     Solution {
         day: 1,
-        input: include_str!("../resources/day_one/day_one_input.txt").into(),
+        input: include_str!("../resources/1/day_one_input.txt").into(),
         part_one: part_one_solve,
         part_two: part_two_solve,
     }

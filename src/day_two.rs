@@ -2,13 +2,13 @@
 
 use crate::Solution;
 
-const SAMPLE: &str = include_str!("../resources/day_two/day_two_sample.txt");
-const EDGE_CASES: &str = include_str!("../resources/day_two/day_two_edge_cases.txt");
+const SAMPLE: &str = include_str!("../resources/2/day_two_sample.txt");
+const EDGE_CASES: &str = include_str!("../resources/2/day_two_edge_cases.txt");
 
 pub fn build_solution() -> Solution {
     Solution {
         day: 2,
-        input: include_str!("../resources/day_two/day_two_input.txt").into(),
+        input: include_str!("../resources/2/day_two_input.txt").into(),
         part_one: part_one_solve,
         part_two: part_two_solve,
     }
