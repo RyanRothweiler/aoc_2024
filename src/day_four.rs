@@ -1,5 +1,5 @@
 use crate::Solution;
-use std::sync::LazyLock;
+use std::{collections::HashMap, sync::LazyLock};
 
 const SAMPLE: &str = include_str!("../resources/4/day_four_sample.txt");
 const SAMPLE_TWO: &str = include_str!("../resources/4/day_four_sample.txt");
@@ -28,14 +28,60 @@ pub fn build_solution() -> Solution {
 }
 
 fn part_one_solve(input: &str) -> f64 {
-    solve(input)
+    let map: Vec<Vec<char>> = build_map(input);
+
+    let mut count: i32 = 0;
+
+    // check
+    for x in 0..map.len() {
+        for y in 0..map[x].len() {
+            for d in &*DIRS {
+                if check_dir((x as i32, y as i32), *d, &map) {
+                    count += 1;
+                }
+            }
+        }
+    }
+
+    count as f64
 }
 
 fn part_two_solve(input: &str) -> f64 {
-    0.0
+    let map: Vec<Vec<char>> = build_map(input);
+
+    let mut count: i32 = 0;
+
+    // check
+    for x in 0..map.len() {
+        for y in 0..map[x].len() {
+            let origin = map_get(x as i32, y as i32, &map);
+            if origin == 'A' {
+                // The names here are wrong
+                let tl = map_get(x as i32 + 1, y as i32 + 1, &map);
+                let tr = map_get(x as i32 - 1, y as i32 - 1, &map);
+                let bl = map_get(x as i32 + 1, y as i32 - 1, &map);
+                let br = map_get(x as i32 - 1, y as i32 + 1, &map);
+
+                let mut hash: HashMap<char, i32> = HashMap::new();
+                *hash.entry(tl).or_insert(0) += 1;
+                *hash.entry(tr).or_insert(0) += 1;
+                *hash.entry(bl).or_insert(0) += 1;
+                *hash.entry(br).or_insert(0) += 1;
+
+                if *hash.entry('S').or_insert(0) == 2
+                    && *hash.entry('M').or_insert(0) == 2
+                    && tl != tr
+                {
+                    count += 1;
+                }
+            }
+        }
+    }
+
+    count as f64
 }
 
-fn solve(input: &str) -> f64 {
+fn build_map(input: &str) -> Vec<Vec<char>> {
     let mut map: Vec<Vec<char>> = vec![];
 
     // build map
@@ -50,20 +96,7 @@ fn solve(input: &str) -> f64 {
         }
     }
 
-    let mut count: i32 = 0;
-
-    // check for words
-    for x in 0..map.len() {
-        for y in 0..map[x].len() {
-            for d in &*DIRS {
-                if check_dir((x as i32, y as i32), *d, &map) {
-                    count += 1;
-                }
-            }
-        }
-    }
-
-    count as f64
+    return map;
 }
 
 fn check_dir(origin: (i32, i32), dir: (i32, i32), map: &Vec<Vec<char>>) -> bool {
@@ -96,9 +129,22 @@ mod tests {
     }
 
     #[test]
+    fn part_two_sample() {
+        let ans = super::part_two_solve(super::SAMPLE);
+        assert_eq!(ans, 9.0);
+    }
+
+    #[test]
     fn part_one() {
         let sol = super::build_solution();
         let ans = sol.run_part_one();
         assert_eq!(ans, 2530.0);
+    }
+
+    #[test]
+    fn part_two() {
+        let sol = super::build_solution();
+        let ans = sol.run_part_two();
+        assert_eq!(ans, 1921.0);
     }
 }
